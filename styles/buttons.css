@@ -1,0 +1,133 @@
+/* 
+    Document   : widgets
+    Created on : July 12, 2012, 10:12:39 AM
+    Author     : David Cramer
+    Description:
+        Widget styles for framework.
+*/
+
+/* cbutton STYLES */
+.cbutton {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+	text-decoration: none;
+        background-color: #fff;
+        
+        border-color: #CCCCCC #CCCCCC #AAAAAA;
+	border-radius: 3px;
+	border-style: solid;
+	border-width: 1px;
+
+	-webkit-box-shadow: 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;
+	box-shadow: 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;
+
+	color: #555555;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 5px 8px;
+	text-shadow: 0 0 0 transparent, 0 1px 0 #FFFFFF;
+	line-height: 16px;
+	text-decoration: none;
+
+        cursor: default;
+        
+}
+a.cbutton,a.cbutton:hover,a.cbutton:active {
+	color: #555 !important;
+        display: inline-block;
+	text-decoration: none;
+}
+
+.cbutton:hover,.cbutton:active,
+.cbutton.active:hover,.cbutton.active:active {
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #FFFFFF inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 0 3px #FFFFFF inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;;
+
+
+	text-decoration: none;
+}
+
+.cbutton span{
+    display: inline-block;
+    height: 0;
+    overflow: hidden;
+    width: 1px;
+    margin-right: -1px;
+}
+.cbutton:hover span{
+    width: auto;
+    height:auto;
+    margin-right: 1px;
+    display: inline;
+}
+.cbutton.cbutton-sml:active{
+    padding: 1px 0px 2px 2px;
+}
+.cbutton.cbutton-sml{
+    padding: 1px 0px 2px 2px;
+}
+.cbutton.cbutton-sml.active:after {
+    border-radius: 0 2px 2px 0;
+    margin-left: 3px;
+    padding: 3px 7px 4px 0;
+}
+
+
+
+.cbutton:active,
+.cbutton.active:active {
+
+	border-color: #999999 #AAAAAA #CCCCCC;
+	border-left: 1px solid #AAAAAA;
+	border-right: 1px solid #AAAAAA;
+	border-style: solid;
+	border-width: 1px;
+
+	-webkit-box-shadow: 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset, 0 2px 2px rgba(0, 0, 0, 0.4) inset;
+	box-shadow: 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset, 0 2px 2px rgba(0, 0, 0, 0.4) inset;
+	color: #555555;
+}
+.cbutton.active:active:after {
+        -webkit-box-shadow: -2px 3px 5px -2px rgba(0, 0, 0, 0.7) inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset;
+        box-shadow: -2px 3px 5px -2px rgba(0, 0, 0, 0.7) inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset;
+}
+.cbutton.active:active{
+        padding-right: 0;
+        border-right: 0;
+}
+.cbutton.active:after {
+    background-color: #5FD300;
+    border-radius: 0 3px 3px 0;
+    -webkit-box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.7) inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.7) inset, 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0, 0.2) inset;
+    content: "";
+    margin-left: 5px;
+    margin-right: -3px;
+    padding: 8px 5px 8px;
+}
+.cbutton.active {
+        border-radius: 3px;
+        padding-right: 0;
+        border-right: 0;
+    /*
+	border: 1px solid;
+	border-color: #81db47 #7bd03f #91ef50;
+        background-color: #d7fcd3;
+	-webkit-box-shadow: 0 1.0px 2px 1.2px rgba(255, 255, 255, 0.99) inset, 0 0 11px 0 rgba(143, 226, 75, 0.99) inset, 0 0 6px 0 rgba(187, 237, 146, 0.6);
+	box-shadow: 0 1.0px 2px 1.2px rgba(255, 255, 255, 0.99) inset, 0 0 11px 0 rgba(143, 226, 75, 0.99) inset, 0 0 6px 0 rgba(187, 237, 146, 0.6);
+	*/
+        color: #555555;
+}
+
+
+.cbutton.active-error:after{
+    background-color: #de0000;
+}
+.cbutton.active-warning:after{
+    background-color: #ffa200;
+}
+.cbutton.active-info:after{
+    background-color: #49afcd;
+}
+.cbutton.active-black:after{
+    background-color: #3e3e3e;
+}

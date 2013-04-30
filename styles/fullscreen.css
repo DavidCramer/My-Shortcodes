@@ -1,0 +1,62 @@
+/* 
+    Document   : fullscreen
+    Created on : Jul 20, 2012, 12:08:49 PM
+    Author     : DavidCramer
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+html.wp-toolbar{
+    padding-top:0;
+}
+#wpcontent{
+    margin:0;
+}
+#footer, #msc_container #header, #msc_configOption .infoPanel, .msc_configOption.textarea label, #adminmenuback,#adminmenuwrap,#wpadminbar, .infoPanel{
+    display: none;
+}
+#msc_container{
+    margin:0;
+}
+#msc_container #ce-nav{
+    border-bottom: 1px solid #D8D8D8;
+    float: none;
+    min-height: 37px;
+    width: auto;
+}
+#msc_container #ce-nav li{
+    display: block;
+    float: left;
+    width: auto;
+    
+}
+#msc_container #content{
+    padding: 0;
+}
+#msc_container .group{
+    padding: 0 10px;
+}
+#msc_container.wide,#msc_container.wide #content{
+    width:100%;
+}
+.save_bar_top{
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 999999;
+}
+#saveIndicator{    
+    position: fixed;
+    right: 145px;
+    top: 0;
+    z-index: 999999;
+}
+.CodeMirror-scroll {
+  height: auto;
+  overflow-y: hidden;
+  overflow-x: auto;
+}

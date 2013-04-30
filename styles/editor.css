@@ -1,0 +1,394 @@
+a {
+    color: #337799;
+    font-weight: bold;
+    text-decoration: none;
+}
+a:visited {
+    color: #3882A8;
+}
+a:hover {
+    color: #2D6B89;
+    text-decoration: underline;
+}
+#area {
+    min-width: 920px;
+}
+a:hover {
+    text-decoration: none;
+}
+.CodeMirror {
+    font-family: monospace;
+    line-height: 1em;
+}
+.CodeMirror-scroll {
+    height: 300px;
+    overflow: auto;
+    position: relative;
+}
+.CodeMirror-gutter {
+    background-color: #F7F7F7;
+    border-right: 1px solid #EEEEEE;
+    height: 100%;
+    left: 0;
+    min-width: 2em;
+    position: absolute;
+    top: 0;
+}
+.CodeMirror-gutter-text {
+    color: #AAAAAA;
+    padding: 0.4em 0.2em 0.4em 0.4em;
+    text-align: right;
+}
+.CodeMirror-lines {
+    padding: 0.4em;
+}
+.CodeMirror pre {
+    background: 0 0 transparent;
+    border-radius: 0 0 0 0;
+    border-width: 0;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    padding: 0;
+    white-space: pre;
+    word-wrap: normal;
+}
+.CodeMirror textarea {
+    font-family: inherit !important;
+    font-size: inherit !important;
+}
+.CodeMirror-cursor {
+    border-left: 1px solid black !important;
+    position: absolute;
+    visibility: hidden;
+    z-index: 10;
+}
+.CodeMirror-focused .CodeMirror-cursor {
+    visibility: visible;
+}
+span.CodeMirror-selected {
+    background: 0 0 #CCCCCC !important;
+    color: highlighttext !important;
+}
+.CodeMirror-focused span.CodeMirror-selected {
+    background: 0 0 highlight !important;
+}
+.CodeMirror-matchingbracket {
+    color: #00FF00 !important;
+}
+.CodeMirror-nonmatchingbracket {
+    color: #FF2222 !important;
+}
+.cm-s-default span.cm-keyword {
+    color: #770088;
+}
+.cm-s-default span.cm-atom {
+    color: #221199;
+}
+.cm-s-default span.cm-number {
+    color: #116644;
+}
+.cm-s-default span.cm-def {
+    color: #0000FF;
+}
+.cm-s-default span.cm-variable {
+    color: black;
+}
+.cm-s-default span.cm-variable-2 {
+    color: #0055AA;
+}
+.cm-s-default span.cm-variable-3 {
+    color: #00AA55;
+}
+.cm-s-default span.cm-property {
+    color: black;
+}
+.cm-s-default span.cm-operator {
+    color: black;
+}
+.cm-s-default span.cm-comment {
+    color: #AA5500;
+}
+.cm-s-default span.cm-string {
+    color: #AA1111;
+}
+.cm-s-default span.cm-string-2 {
+    color: #FF5500;
+}
+.cm-s-default span.cm-meta {
+    color: #555555;
+}
+.cm-s-default span.cm-error {
+    color: #FF0000;
+}
+.cm-s-default span.cm-qualifier {
+    color: #555555;
+}
+.cm-s-default span.cm-builtin {
+    color: #3300AA;
+}
+.cm-s-default span.cm-bracket {
+    color: #CCCC77;
+}
+.cm-s-default span.cm-tag {
+    color: #117700;
+}
+.cm-s-default span.cm-attribute {
+    color: #0000CC;
+}
+.CodeMirror {
+    bottom: 0;
+    cursor: text;
+    font-family: monaco,"lucida console",monospace;
+    font-size: 9pt;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.CodeMirror-scroll {
+    height: 100%;
+}
+.CodeMirror-gutter {
+    cursor: default;
+    min-width: 3em;
+}
+.CodeMirror-gutter-text {
+    font-family: sans-serif;
+    font-size: 0.8em;
+    position: relative;
+    right: 5px;
+    top: 1px;
+}
+.CodeMirror-lines {
+    padding-left: 10px;
+}
+.CodeMirror-gutter-text, .CodeMirror-lines {
+    line-height: 17px;
+}
+#area {
+    -moz-box-sizing: border-box;
+    background: 0 0 #DDDDDD;
+    bottom: 0;
+    left: 0px;
+    position: absolute;
+    right: 20px;
+    top: 65px;
+}
+#area .pane {
+    background: 0 0 #ECECEC;
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+}
+#area #editorPane {
+    right: 50%;
+}
+#area #outputPane {
+    box-shadow: -3px 0px 3px -3px rgba(0, 0, 0, 0.2);
+    left: 50%;
+}
+#outputPane {
+    -moz-box-sizing: border-box;
+    padding: 10px;
+}
+#scriptsizepanel{
+    float: right;
+    display: block;
+    margin-top: 5px;
+}
+#outputPane .toolbar {
+    padding: 0 0 8px;
+    margin-top: -6px;
+    height: 20px;
+}
+#outputPane .area {
+    height: 100%;
+    width: 100%;
+}
+#outputPane iframe {
+    background: 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    height: 100%;
+    width: 100%;
+}
+#sourceHeader,#sourceHTML,#sourceFooter{
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 10px;
+    margin-bottom: 10px;    
+}
+
+#area .pane nav.tabs {
+    height: 25px;
+    overflow: hidden;
+}
+#area .pane nav.tabs {
+    height: 25px;
+    left: 0;
+    line-height: 25px;
+    position: absolute;
+    top: -25px;
+}
+#area .pane nav.tabs a, #area .pane nav.tabs strong {
+    background: #808080;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    color: #FFFFFF;
+    display: block;
+    float: left;
+    font-family: shanti,sans-serif;
+    font-weight: normal;
+    height: 25px;
+    margin-right: 3px;
+    overflow: hidden;
+    padding: 0 10px;
+    text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+#area .pane nav.tabs strong {
+    padding-right: 10px;
+    font-weight: bold;
+}
+#area .pane nav.tabs a:hover {
+    background: #2A95C5;
+}
+#area .pane nav.tabs a.active, #area .pane nav.tabs strong {
+    background: 0 0 #ECECEC;
+    color: #777777;
+    text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.1);
+}
+article.code, article.cfg {
+    -moz-box-sizing: border-box;
+    height: 100%;
+    left: 0;
+    padding: 10px 10px 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+article.cfg {
+    overflow: auto;
+    background: #ffffff;
+    border: 10px solid #ECECEC;
+    border-bottom: 0;
+    padding: 0 10px;
+}
+article.cfg h3 {
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    border-bottom: 1px solid #E7E7E7;
+    font-size: 1.3em;
+    margin-bottom: 5px;
+    padding: 0 15px 0 0;
+    font-weight: normal;
+}
+article.code h3 {
+    margin: 0;
+    padding: 0;
+}
+article.code h3 {
+    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",sans-serif;
+    text-decoration: none;
+    background-color: #fff;
+    border-color: #CCCCCC #CCCCCC #AAAAAA;
+    border-radius: 3px 3px 0 0;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;
+    box-shadow: 0 0 1px #FFFFFF inset, 0 -30px 20px -20px rgba(0, 0, 0,0.2) inset;
+    color: #555555;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 8px;
+    text-shadow: 0 0 0 transparent, 0 1px 0 #FFFFFF;
+    line-height: 16px;
+    text-decoration: none;
+    cursor: default;
+}
+article.code h3 label {
+    float: right;
+}
+article.code h3 label span {
+    color: #AAAAAA;
+    text-transform: none;
+}
+article.code h3 select {
+    float: right;
+    margin-top: -3px;
+    text-transform: none;
+    width: 100px;    
+}
+article.code h3 span.key {
+    font-size: 7pt;
+    text-transform: none;
+}
+article.code .editor {
+    -moz-box-sizing: border-box;
+    background: 0 0 #FFFFFF;
+    border: 1px solid #CCCCCC;
+    bottom: 10px;    
+    left: 10px;
+    overflow: hidden;
+    position: absolute;
+    right: 10px;
+    top: 40px;
+}
+article.code > div {
+    height: 100%;
+    width: 100%;
+}
+
+#editorPane.all .code.html {
+    top: 0;
+}
+#editorPane.all .code.css {
+    top: 33%;
+}
+#editorPane.all .code.javascript {
+    top: 66%;
+}
+#editorPane.html .editor, #editorPane.css .editor, #editorPane.javascript .editor {
+    bottom: 10px;
+}
+#editorPane.html .code.html {
+    height: 100%;
+    top: 0;
+}
+#editorPane.html .code.css, #editorPane.html .code.javascript {
+    display: none;
+}
+#editorPane.css .code.css {
+    height: 100%;
+    top: 0;
+}
+#editorPane.css .code.html, #editorPane.css .code.javascript {
+    display: none;
+}
+#editorPane.javascript .code.javascript {
+    height: 100%;
+    top: 0;
+}
+#editorPane.javascript .code.html, #editorPane.javascript .code.css {
+    display: none;
+}
+#wpcontent {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+#wpbody {
+  bottom: 40px;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.wp-pointer-top .wp-pointer-arrow, .wp-pointer-bottom .wp-pointer-arrow, .wp-pointer-undefined .wp-pointer-arrow {
+  height: 14px;
+  left: 237px;
+  width: 30px;
+}

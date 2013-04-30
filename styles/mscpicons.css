@@ -1,0 +1,17 @@
+.current.toplevel_page_my-shortcodes .wp-menu-image{
+    background: url("../images/red.png") no-repeat -39px 7px transparent;
+}
+.current.toplevel_page_my-shortcodes, .wp-not-current-submenu.toplevel_page_my-shortcodes:hover {
+	-webkit-box-shadow: 4px 0 0 0 #2A95C5 inset, 5px 0 0 0 #ffffff inset;
+	box-shadow: 4px 0 0 0 #2A95C5 inset, 5px 0 0 0 #ffffff inset
+}
+.wp-not-current-submenu.toplevel_page_my-shortcodes {
+	-webkit-box-shadow: 3px 0 0 0 #999999 inset, 4px 0 0 0 #ffffff inset;
+	box-shadow: 3px 0 0 0 #999999 inset, 4px 0 0 0 #ffffff inset
+}
+.wp-not-current-submenu.toplevel_page_my-shortcodes .wp-menu-image{
+    background: url("../images/red.png") no-repeat 7px 7px transparent;
+}
+.wp-not-current-submenu.toplevel_page_my-shortcodes:hover .wp-menu-image{
+    background: url("../images/red.png") no-repeat -16px 7px transparent;
+}

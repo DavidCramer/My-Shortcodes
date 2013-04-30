@@ -1,0 +1,14 @@
+/* 
+    Document   : preview page
+    Created on : Aug 16, 2012, 8:22:30 AM
+    Author     : David Cramer
+    Description:
+        sets the stlyes for the preview.
+*/
+
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300);
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 0.8em;
+}

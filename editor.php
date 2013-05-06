@@ -12,12 +12,12 @@
         $Element['__showpreview__'] = 1;
     }
     // remove admin bar for preview
-    $user = wp_get_current_user();
-    $ismenu = get_user_meta($user->ID, 'show_admin_bar_front', true);
-    if($ismenu == true){
-        update_user_meta($user->ID, 'show_admin_bar_front', false);
-        $disableadminbarmessage = 'We disabled your admin bar for preview. You can enable it again in your profile settings.';
-    }
+    //$user = wp_get_current_user();
+    //$ismenu = get_user_meta($user->ID, 'show_admin_bar_front', true);
+    //if($ismenu == true){
+    //    update_user_meta($user->ID, 'show_admin_bar_front', false);
+    //   $disableadminbarmessage = 'We disabled your admin bar for preview. You can enable it again in your profile settings.';
+    //}
     
 ?>
     <form action="?page=my-shortcodes" method="post" id="editor-form">

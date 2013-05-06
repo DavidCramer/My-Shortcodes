@@ -112,11 +112,11 @@ function msc_process() {
                 die;
             }
             if($_GET['myshortcodeproinsert'] == 'preview'){
-                add_action('wp_before_admin_bar_render', 'msc_removeAdminBar');
-                function msc_removeAdminBar(){
-                    global $wp_admin_bar;
-                    $wp_admin_bar = new WP_Admin_Bar_remove();
-                }
+                //add_action('wp_before_admin_bar_render', 'msc_removeAdminBar');
+                //function msc_removeAdminBar(){
+                //    global $wp_admin_bar;
+                //    $wp_admin_bar = new WP_Admin_Bar_remove();
+                //}
                 include(MYSHORTCODES_PATH.'/libs/shortcodepreview.php');
                 die;
             }

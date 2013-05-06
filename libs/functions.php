@@ -468,56 +468,7 @@ function msc_checkInstanceID($id, $process){
     }
     return $id;
 }
-function msc_getscriptsize($queue = false, $sizetrack = 0){
-
-
-    if(empty($queue)){
-        global $wp_scripts;
-        if(!empty($wp_scripts->queue)){            
-            if(empty($wp_scripts->queue)){
-                return 0;
-            }else{
-                return msc_getscriptsize($wp_scripts->queue);
-            }
-        }
-    }
-    global $wp_scripts;
-    if(empty($queue)){
-        return 0;
-    }
-    foreach($queue as $script){        
-        if(!empty($wp_scripts->registered[$script])){
-            if(!empty($wp_scripts->registered[$script]->deps)){
-                $sizetrack = msc_getscriptsize($wp_scripts->registered[$script]->deps, $sizetrack);
-            }
-            if(strpos($wp_scripts->registered[$script]->src, 'http') === true){
-                $remoteFile = $wp_scripts->registered[$script]->src;
-            }else{
-                $remoteFile = get_site_url().$wp_scripts->registered[$script]->src;
-            }
-            return $sizetrack+msc_getfilesize($remoteFile);
-        }
-    }    
-    return $sizetrack;    
-}
-
-function msc_getfilesize($remoteFile){
-    $ch = curl_init($remoteFile);
-    curl_setopt($ch, CURLOPT_NOBODY, true);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HEADER, true);
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); //not necessary unless the file redirects (like the PHP example we're using here)
-    $data = curl_exec($ch);
-    curl_close($ch);
-    if ($data === false) {
-        return 0;
-    }
-    $contentLength = 'unknown';
-    if (preg_match('/Content-Length: (\d+)/', $data, $matches)) {
-      return (int)$matches[1];
-    }
-    return 0;
-}         
+      
 function msc_processHeaders($ID, $atts){
     global $headerscripts, $phpincludes, $wp_scripts, $cssincludes, $elementinstances, $footerContent, $footerOutput, $headerContent, $jsincludes;
        

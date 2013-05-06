@@ -45,27 +45,8 @@ if(!empty($IDs)){
     }
     $outPutCode = msc_doShortcode($instance[0]['atts'], $content, $shortcodes[0]);
     
-    $scriptsSize = msc_getscriptsize();    
-    
-        $scriptsSize = $scriptsSize+strlen($footerOutput)+strlen($outPutCode)+strlen($headerscripts);    
-        global $wp_scripts;
-        if(!empty($cfg['_assetURL'])){
-            foreach($cfg['_assetURL'] as $key=>$asset){
-                if(!isset($wp_scripts->registered[$key])){
-                    $scriptsSize = msc_getfilesize($asset)+$scriptsSize;
-                }
-            }
-        }
-    if($scriptsSize > 0){
-        $units = array( 0 => 'B', 1 => 'kB', 2 => 'MB', 3 => 'GB' );
-        $log = log($scriptsSize, 1024 );
-        $power = (int) $log;
-        $size = pow(1024, $log - $power);
-        $totalScriptSize = round($size) . $units[$power];
-        $headerscripts = $preheaderscripts.$headerscripts;
-    }else{
-        $totalScriptSize = '0B';
-    }
+    global $wp_scripts;
+    $headerscripts = $preheaderscripts.$headerscripts;
 }
 ?>
 <!DOCTYPE html>
@@ -82,11 +63,5 @@ if(!empty($IDs)){
         }
         ?>
         <?php wp_footer(); ?>
-        <script>
-            if(parent.document.getElementById('previewscriptsize')){
-                parent.document.getElementById('previewscriptsize').innerHTML = '<?php echo $totalScriptSize; ?>';
-            }
-        
-        </script>
     </body>
 </html>

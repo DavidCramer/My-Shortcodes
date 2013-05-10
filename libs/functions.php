@@ -341,8 +341,10 @@ function msc_elementDetect(){
                             if(!empty($options['variables'])){
                                 $atts = array();
                                 foreach($options['variables']['names'] as $varkey=>$variable){
-                                    if($options['variables']['type'][$varkey] == 'Dropdown'){
-                                        $options['variables']['defaults'][$varkey] = trim(strtok($options['variables']['defaults'][$varkey], ','));
+                                    if(!empty($options['variables']['type'][$varkey])){
+                                        if($options['variables']['type'][$varkey] == 'Dropdown'){
+                                            $options['variables']['defaults'][$varkey] = trim(strtok($options['variables']['defaults'][$varkey], ','));
+                                        }
                                     }
                                     if(!empty($options['variables']['multiple'][$varkey])){
                                         $endLoop = true;
@@ -721,7 +723,9 @@ function msc_processHeaders($ID, $atts){
                 // cleanout expired stuff
                 foreach($cssCache as $cachefile=>$expire){
                     if(mktime()-$expire > 0){
-                        unlink($cachePath['basedir'].'/cache/'.$cachefile.'.css');
+                        if(file_exists($cachePath['basedir'].'/cache/'.$cachefile.'.css')){
+                            unlink($cachePath['basedir'].'/cache/'.$cachefile.'.css');
+                        }
                         unset($cssCache[$cachefile]);
                     }
                 }
@@ -799,7 +803,9 @@ function msc_processHeaders($ID, $atts){
                 // cleanout expired stuff
                 foreach($jsCache as $cachefile=>$expire){
                     if(mktime()-$expire > 0){
-                        unlink($cachePath['basedir'].'/cache/'.$cachefile.'.js');
+                        if(file_exists($cachePath['basedir'].'/cache/'.$cachefile.'.js')){
+                            unlink($cachePath['basedir'].'/cache/'.$cachefile.'.js');
+                        }
                         unset($jsCache[$cachefile]);
                     }
                 }
@@ -1422,23 +1428,25 @@ function msc_getDefaultAtts($ElementID, $atts = false){
             $defaultatts = array();
         }
         foreach($Element['_variable'] as $varkey=>$variable){
-            if($Element['_type'][$varkey] == 'Custom'){
-                $p = explode(',',$Element['_variableDefault'][$varkey], 2);
-                $Element['_variableDefault'][$varkey] = trim($p[1]);
-            }
-            if($Element['_type'][$varkey] == 'Dropdown'){
-                if(strpos($Element['_variableDefault'][$varkey], '*') !== false){
-                    $opts = explode(',', $Element['_variableDefault'][$varkey]);
-                    foreach($opts as $valoption){
-                        if(strpos($valoption, '*') !== false){
-                            $Element['_variableDefault'][$varkey] = trim(strtok($valoption, '*'));
-                            break;
-                        }
-                    }
-                }else{
-                    $Element['_variableDefault'][$varkey] = trim(strtok($Element['_variableDefault'][$varkey], ','));
+            if(!empty($Element['_type'][$varkey])){
+                if($Element['_type'][$varkey] == 'Custom'){
+                    $p = explode(',',$Element['_variableDefault'][$varkey], 2);
+                    $Element['_variableDefault'][$varkey] = trim($p[1]);
                 }
+                if($Element['_type'][$varkey] == 'Dropdown'){
+                    if(strpos($Element['_variableDefault'][$varkey], '*') !== false){
+                        $opts = explode(',', $Element['_variableDefault'][$varkey]);
+                        foreach($opts as $valoption){
+                            if(strpos($valoption, '*') !== false){
+                                $Element['_variableDefault'][$varkey] = trim(strtok($valoption, '*'));
+                                break;
+                            }
+                        }
+                    }else{
+                        $Element['_variableDefault'][$varkey] = trim(strtok($Element['_variableDefault'][$varkey], ','));
+                    }
 
+                }
             }
             if(!empty($Element['_isMultiple'][$varkey])){
                 $endLoop = true;
@@ -1502,11 +1510,23 @@ function msc_doShortcode($atts, $content, $shortcode) {
     preg_match_all('/' . $pattern . '/s', $Element['_javascriptCode'], $jifs);
     if(!empty($mifs[5]) && !empty($Element['_variable'])){
         foreach($Element['_variable'] as $varID=>$varKey){
+            //echo $varKey.$ifVal.'<br />';
             $pattern = '\[(\[?)(if '.$varKey.')\b([^\]\/]*(?:\/(?!\])[^\]\/]*)*?)(?:(\/)\]|\](?:([^\[]*+(?:\[(?!\/\2\])[^\[]*+)*+)\[\/\2\])?)(\]?)';
             preg_match_all('/' . $pattern . '/s', $Element['_mainCode'], $subs);
             if(!empty($subs[3])){
                 foreach($subs[3] as $ifVal){
-                    $Element['_mainCode'] = str_replace('[if '.$varKey.$ifVal.']', "<?php if('{{".trim($varKey)."}}' != '".trim($ifVal, '=')."'){ ?>", $Element['_mainCode']);
+                    //!empty($varArray))
+                    //dump($Element,0);
+                    //echo "if('{{".trim($varKey)."}}' != '".trim($ifVal, '=')."'";
+                    if(!empty($Element['_isMultiple'][$varID])){
+                        if(!empty($varArray[$varKey][0])){
+                            $Element['_mainCode'] = str_replace('[if '.$varKey.$ifVal.']', "<?php if('{{".trim($varArray[$varKey][0])."}}' != '".trim($ifVal, '=')."'){ ?>", $Element['_mainCode']);
+                        }else{
+                            $Element['_mainCode'] = str_replace('[if '.$varKey.$ifVal.']', "<?php if('{{".trim($varKey)."}}' != '".trim($ifVal, '=')."'){ ?>", $Element['_mainCode']);
+                        }
+                    }else{
+                        $Element['_mainCode'] = str_replace('[if '.$varKey.$ifVal.']', "<?php if('{{".trim($varKey)."}}' != '".trim($ifVal, '=')."'){ ?>", $Element['_mainCode']);
+                    }
                 }
             }
             

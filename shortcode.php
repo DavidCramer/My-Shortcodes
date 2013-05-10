@@ -209,7 +209,9 @@
                         var ctype = jQuery('#defaultContent').val()+'[/'+shortcode+']';
                     }
                     jQuery('#msc_container input,#msc_container select,#msc_container textarea').each(function(){
-                        output += ' '+this.name+'="'+this.value+'"';
+                        if(this.value.length > 0){
+                            output += ' '+this.name+'="'+this.value+'"';
+                        }
                     });
                     var win = window.dialogArguments || opener || parent || top;
                     win.send_to_editor(output+']'+ctype);

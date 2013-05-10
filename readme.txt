@@ -20,7 +20,9 @@ This enables you to render the page or posts with the requires scripts and style
 
 IMPORTANT: version 2 is not compatible with 1.9.2 exported .CE files. If you have exported and saved .ce shortcodes. Please import them before upgrading. once upgraded, the shortcodes will be converted. you can then export the converted elements to .MSC files for safe keeping.
 
-[Documentation](http://myshortcodes.cramer.co.za/documentation/) * please not these are outdated, but will be improved in the coming weeks.
+[on GitHub](https://github.com/Desertsnowman/My-Shortcodes)
+
+[Documentation](http://docs.caldera.co.za/)
 
 == Installation ==
 
@@ -50,6 +52,12 @@ navigate to the plugin in admin
 Click upgrade elements
 
 == Changelog ==
+
+= 2.01 =
+* Fixed the shortcode inserter to not insert blank attributes
+* Added a check for attributes before attempting parsing
+* Added a check for confirming the existance of a cache file before attemting to clear it
+* Minor Bug Fixes
 
 = 2.0 =
 * Complete rebuild of the core system

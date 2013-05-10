@@ -310,7 +310,7 @@ function msc_elementDetect(){
                         }
                     }
                 }
-                if(!empty($setAtts)){
+                if(!empty($setAtts) && !empty($atts)){
                     $shortcodes[$ID][] = shortcode_atts($atts, $setAtts);
                 }else{
                     $shortcodes[$ID][] = false;
@@ -377,7 +377,7 @@ function msc_elementDetect(){
                                 $post->post_content = trim(str_replace($used[5][$key], $preContent, $post->post_content));
                                 $contentPrefilters[$post->ID] = $post->post_content;
                             }
-                            if(!empty($setAtts)){
+                            if(!empty($setAtts) && !empty($atts)){
                                 $shortcodes[$element][] = shortcode_atts($atts, $setAtts);
                             }else{
                                 $shortcodes[$element][] = false;
@@ -436,7 +436,7 @@ function msc_elementDetect(){
                                         }
                                     }
                                 }
-                                if (!empty($setAtts)) {
+                                if (!empty($setAtts) && !empty($atts)) {
                                     $shortcodes[$element][] = shortcode_atts($atts, $setAtts);
                                 } else {
                                     $shortcodes[$element][] = false;
@@ -898,7 +898,7 @@ function msc_contentPrefilter($template){
                     }
                 }
             }
-            if(!empty($setAtts)){
+            if(!empty($setAtts) && !empty($atts)){
                 $Atts = shortcode_atts($atts, $setAtts);
             }else{
                 $Atts = false;
@@ -1469,8 +1469,9 @@ function msc_getDefaultAtts($ElementID, $atts = false){
             }
 
         }
-
-        $atts = shortcode_atts($defaultatts, $atts);
+        if(!empty($defaultatts)){
+            $atts = shortcode_atts($defaultatts, $atts);
+        }
 
     }else{
         $atts = false;

@@ -45,28 +45,31 @@ echo msc_configOption('shortcode', 'shortcode', 'textfield', 'Slug', $Element);
 echo '<h3>Element Type</h3>';
 
 //echo msc_configOption('elementType', 'elementType', 'radio', 'Element Type|Shortcode*, Widget, Hybrid (Shortcode & Widget), Always Load, Code', $Element);
+if(empty($Element['_elementType'])){
+    $Element['_elementType'] = 1;
+}
 ?>
 
 <div id="config_elementType" class="msc_configOption radio">
     <label class="multiLable">Element Type</label>
     <div class="toggleConfigOption"> 
-        <input type="radio" checked="checked" value="1" id="elementType_1" name="data[_elementType]">
+        <input type="radio" checked="checked" value="1" id="elementType_1" name="data[_elementType]" <?php if($Element['_elementType'] == '1'){ echo 'checked="checked"'; } ?> >
         <label style="width:auto;" for="elementType_1">Shortcode</label>
     </div>
     <div class="toggleConfigOption">
-        <input type="radio" value="2" id="elementType_2" name="data[_elementType]">
+        <input type="radio" value="2" id="elementType_2" name="data[_elementType]" <?php if($Element['_elementType'] == '2'){ echo 'checked="checked"'; } ?>>
         <label style="width:auto;" for="elementType_2"> Widget</label>
     </div>
     <div class="toggleConfigOption">
-        <input type="radio" value="3" id="elementType_3" disabled="disabled" name="data[_elementType]">
+        <input type="radio" disabled="disabled" name="data[_elementType]">
         <label style="width:auto;" for="elementType_3"> Hybrid (Shortcode &amp; Widget) <span class="description">Only available in Pro</span></label>
     </div>
     <div class="toggleConfigOption">
-        <input type="radio" value="" id="elementType_4" disabled="disabled" name="data[_elementType]">
+        <input type="radio" disabled="disabled" name="data[_elementType]">
         <label style="width:auto;" for="elementType_4"> Always Load <span class="description">Only available in Pro</span></label>
     </div>
     <div class="toggleConfigOption">
-        <input type="radio" value="" id="elementType_5" disabled="disabled" name="data[_elementType]">
+        <input type="radio" disabled="disabled" name="data[_elementType]">
         <label style="width:auto;" for="elementType_5"> Code <span class="description">Only available in Pro</span></label>
     </div>
     <div class="toggleConfigOption">

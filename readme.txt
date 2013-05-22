@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PA8U6
 Tags: shortcode, My Shortcodes, shortcode builder, custom shortcode, custom code, widgets, custom widget, caldera engine lite, caldera, caldera engine
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.0
+Stable tag: 2.02
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,10 @@ navigate to the plugin in admin
 Click upgrade elements
 
 == Changelog ==
+
+= 2.02 =
+* Fixed a bug that caused elements to revert to type "shortcode" on edit.
+
 
 = 2.01 =
 * Fixed the shortcode inserter to not insert blank attributes

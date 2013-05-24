@@ -53,9 +53,11 @@ Click upgrade elements
 
 == Changelog ==
 
+= 2.02b =
+* Small fix for placing WordPress admin notices neatly as not to mess up the interface.
+
 = 2.02 =
 * Fixed a bug that caused elements to revert to type "shortcode" on edit.
-
 
 = 2.01 =
 * Fixed the shortcode inserter to not insert blank attributes

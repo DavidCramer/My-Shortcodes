@@ -2,7 +2,7 @@
 global $shortcode_tags;
 ?>
 <div class="wrap poststuff" id="msc_container">
-
+<h2 style="display:none;"><!-- hack to force notices below here. not much in docs on how to do it properly. oh well. --></h2>
     <div id="header">
         <div class="title">
             <h2>My Shortcodes</h2><sub>V<?php echo MYSHORTCODES_VER; ?> </sub>

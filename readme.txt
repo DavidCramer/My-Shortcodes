@@ -5,7 +5,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PA8U6
 Tags: shortcode, My Shortcodes, shortcode builder, custom shortcode, custom code, widgets, custom widget, caldera engine lite, caldera, caldera engine
 Requires at least: 3.3
 Tested up to: 3.5.1
-Stable tag: 2.02
+Stable tag: 2.02b
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 

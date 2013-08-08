@@ -4,8 +4,8 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=PA8U6
 
 Tags: shortcode, My Shortcodes, shortcode builder, custom shortcode, custom code, widgets, custom widget, caldera engine lite, caldera, caldera engine
 Requires at least: 3.3
-Tested up to: 3.5.1
-Stable tag: 2.02b
+Tested up to: 3.6
+Stable tag: 2.04
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,12 @@ navigate to the plugin in admin
 Click upgrade elements
 
 == Changelog ==
+
+= 2.04 =
+* Swapped out the old MSC file for json import. This correct a bug that caused broken imports and extends compatibility with Caldera Engine.
+
+= 2.03 =
+* improved cache cleanup
 
 = 2.02b =
 * Small fix for placing WordPress admin notices neatly as not to mess up the interface.

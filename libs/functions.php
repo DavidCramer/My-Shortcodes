@@ -722,7 +722,7 @@ function msc_processHeaders($ID, $atts){
             }else{
                 // cleanout expired stuff
                 foreach($cssCache as $cachefile=>$expire){
-                    if(mktime()-$expire > 0){
+                    if($expire-time() < 0){
                         if(file_exists($cachePath['basedir'].'/cache/'.$cachefile.'.css')){
                             unlink($cachePath['basedir'].'/cache/'.$cachefile.'.css');
                         }
@@ -738,7 +738,7 @@ function msc_processHeaders($ID, $atts){
                     $cached = true;
                     fwrite($fp, $Css);
                     fclose($fp);
-                    $cssCache[$cssHash] = strtotime('+5 days');
+                    $cssCache[$cssHash] = time()+60*60*24*3;
                     update_option('_msc_css_cache', $cssCache);
                 }
             }            
@@ -802,7 +802,7 @@ function msc_processHeaders($ID, $atts){
             }else{
                 // cleanout expired stuff
                 foreach($jsCache as $cachefile=>$expire){
-                    if(mktime()-$expire > 0){
+                    if($expire-time() < 0){
                         if(file_exists($cachePath['basedir'].'/cache/'.$cachefile.'.js')){
                             unlink($cachePath['basedir'].'/cache/'.$cachefile.'.js');
                         }
@@ -818,7 +818,7 @@ function msc_processHeaders($ID, $atts){
                     $cached = true;
                     fwrite($fp, $jsout);
                     fclose($fp);
-                    $jsCache[$jsHash] = strtotime('+5 days');
+                    $jsCache[$jsHash] = time()+60*60*24*3;
                     update_option('_msc_js_cache', $jsCache);
                 }
             }            
@@ -920,8 +920,6 @@ function msc_shortcode_ajax(){
     if((empty($_POST['process']) && $_POST['function']) && (empty($_POST['shortcode']) && empty($_POST['element']))){
         return false;
     }
-
-    
     
     $elements = get_option('CE_ELEMENTS');
     $declaired = array();
@@ -931,7 +929,7 @@ function msc_shortcode_ajax(){
                 $declaired[$inelement] = 1;
             }
         }else{
-            echo $declaired[$_POST['element']] = 1;
+            $declaired[$_POST['element']] = 1;
         }
     }
     foreach($elements as $ID=>$element){
@@ -1327,6 +1325,26 @@ function msc_configOption($ID, $Name, $Type, $Title, $Config, $caption = false, 
 }
 
 function msc_saveElement($Data) {
+
+$cssCache = get_option('_msc_css_cache');
+$jsCache = get_option('_msc_js_cache');
+$cachePath = wp_upload_dir();
+if(is_array($cssCache)){
+    foreach($cssCache as $file=>$time){
+        if(file_exists($cachePath['basedir'].'/cache/'.$file.'.css')){
+            unlink($cachePath['basedir'].'/cache/'.$file.'.css');
+        }
+    }
+}
+if(is_array($jsCache)){
+    foreach($jsCache as $file=>$time){
+        if(file_exists($cachePath['basedir'].'/cache/'.$file.'.js')){
+            unlink($cachePath['basedir'].'/cache/'.$file.'.js');
+        }
+    }
+}
+delete_option('_msc_css_cache');
+delete_option('_msc_js_cache');
 
     if (empty($Data['_ID'])) {
         $Data['_ID'] = strtoupper(uniqid('EL'));
@@ -1784,25 +1802,7 @@ function msc_rendersource_preview($ID){
     
     
 }
-function msc_activate(){
 
-    global $wp_version;
-    $request_string = array(
-        'body' => array(
-            'action'  => 'activate_plugin', 
-            'transactionid' => $_POST['tid'],
-            'api-key' => md5(home_url())
-            ),
-        'user-agent' => 'WordPress/'. $wp_version .'; '. home_url()
-    );    
-    $raw_response = wp_remote_post('http://localhost/caldera/api/1/', $request_string );
-    //dump($_POST, false);
-    //dump($request_string);
-    dump($raw_response['body']);
-    
-    
-    die;
-}
 function msc_dropdown_pages($args = '') {
 	$defaults = array(
 		'depth' => 0, 'child_of' => 0,
@@ -2315,11 +2315,15 @@ foreach($Groups as $GroupName=>$vars){
     }
 
     function msc_importScript($file){
-        
-        $data = unserialize(base64_decode(file_get_contents($file)));
-        
+
+        $data = json_decode(file_get_contents($file), true);
+        if(empty($data)){
+            $data = unserialize(base64_decode(file_get_contents($file)));
+        }
+
         $elements = get_option('CE_ELEMENTS');
         if(empty($data['exportPack'])){
+            unlink($file);
             return 'error: pack was empty. Perhaps the export didn\'t have any elements selected?';
         }
         if(is_array($elements)){
@@ -2331,13 +2335,16 @@ foreach($Groups as $GroupName=>$vars){
         foreach($data['exportCfg'] as $id=>$cfg){
             update_option($id ,$cfg);
         }
+        unlink($file);
         return $data['exportSettings']['_pluginSet'];
     }
+
     function msc_exportPlugin($data, $type){
+        global $wp_version;
 
         update_option('_msp_'.$data['_pluginSet'], $data);
-        $data['_pluginID'] = sanitize_key($data['_pluginName']);
-        $data['_pluginID_UPPER'] = strtoupper($data['_pluginID']);
+        $data['_pluginID'] = 'cldra_'.str_replace('-', '_', sanitize_key($data['_pluginName']));
+        $data['_pluginID_UPPER'] = 'cldra_'.str_replace('-', '_', strtoupper($data['_pluginID']));
         $elements = get_option('CE_ELEMENTS');
 
 
@@ -2351,7 +2358,6 @@ foreach($Groups as $GroupName=>$vars){
         $uploadVars = wp_upload_dir();
         $assetsToCopy = array();
         $Widgets = array();
-        $Posttypes = array();
         $alwaysLoads= array();
         $pluginAlwaysLoadIncludes = array();
         $slugsAvailable = array();
@@ -2365,22 +2371,14 @@ foreach($Groups as $GroupName=>$vars){
                 if(sanitize_key($element['category']) == $data['_pluginSet'] || ($data['_pluginSet'] == '__allactive____' && $element['state'] == 1)){
                     
                     $outData['exportPack'][$id] = $element;
-                    $Element = get_option($id);                    
+                    $Element = get_option($id);
                     $outData['exportCfg'][$id] = $Element;
                 }
             }            
             if($type == 'script'){
-                $filename = $data['_pluginSet'];
-                if($data['_pluginSet'] == '__allactive____'){
-                    $filename = 'all_active';
-                }
-
-            $outData = gzencode(base64_encode(serialize($outData)),9);
-                ini_set('zlib.output_compression','Off');
-                header('Content-Type: application/x-download');
-                header('Content-Encoding: gzip');
+                $outData = json_encode($outData);
                 header('Content-Length: '.strlen($outData));
-                header('Content-Disposition: attachment; filename="'.$filename.'.msc"');
+                header('Content-Disposition: attachment; filename="'.str_replace('__', '', $data['_pluginSet']).'.json"');
                 header('Cache-Control: no-cache, no-store, max-age=0, must-revalidate');
                 header('Pragma: no-cache');
                 echo $outData;
@@ -2388,9 +2386,7 @@ foreach($Groups as $GroupName=>$vars){
             }
 
         }
-        
     }
-
 
 }
 
@@ -2601,15 +2597,6 @@ function msc_attsConfigFields($args){
     $Return .= '</tr>';
 
     return $Return;
-}
-
-function dump($a, $die = true){
-    echo '<pre>';
-    print_r($a);
-    echo '</pre>';
-    if($die){
-        die;
-    }
 }
 
 

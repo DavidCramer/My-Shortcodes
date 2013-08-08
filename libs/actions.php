@@ -97,7 +97,6 @@ if (is_admin() === true) {
     add_action('wp_ajax_msc_dismisssavepointer', 'msc_dismisssavepointer');
     add_action('wp_ajax_upgrade_elements', 'msc_upgradeElements');
     add_action('wp_ajax_msc_alwaysloadaddgroupSet', 'msc_alwaysloadaddgroupSet');
-    add_action('wp_ajax_msc_activate', 'msc_activate');
     add_action('admin_head', 'msc_ajax_javascript');
 }
 add_action('wp_ajax_my_shortcode_ajax', 'msc_shortcode_ajax');
